@@ -34,6 +34,24 @@ switch ($_POST['action'])
         }
         echo addTask($taskTitle , $folderId);
         break;
+
+        /*-- Delete Task --*/
+    case 'addTask' :
+        $tskTitle = $_POST['taskName'];
+        $folder_id = $_POST['Folder_id'];
+        if (empty($tskTitle) || strlen($tskTitle) < 3)
+        {
+            echo "The Task name must be greater than 3 letters !!";
+            die();
+        }
+        if (!isset($folder_id) && !is_numeric($folder_id))
+        {
+            echo "Please select folder !!";
+            die();
+        }
+
+        echo addTask($tskTitle , $folder_id);
+        break;
     default:
         diePage("Invalid Request");
 }

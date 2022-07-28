@@ -69,10 +69,10 @@ function deleteTask($task_id)
 
 function addTask($taskTitle , $folder_id)
 {
-    global $pdo;
-    $currentUserId = getCurrentUserId();
-    $sql = "INSERT INTO `tasks` (Title , User_ID , Folder_ID) VALUES (:taskTitle, :User_id ,:Folder_id );";
-    $stmt = $pdo -> prepare($sql);
-    $stmt -> execute([':taskTitle' => $taskTitle , ':User_ID' => $currentUserId , ':Folder_id' => $folder_id ]);
-    return $stmt -> rowCount();
+   global $pdo;
+   $get_user_id = getCurrentUserId();
+   $sql = "INSERT INTO tasks (Title , User_ID , Folder_ID) VALUES (:title , :user_id , :folder_id)";
+   $stmt = $pdo -> prepare($sql);
+   $stmt -> execute([':title' => $taskTitle , ':user_id' => $get_user_id , ':folder_id' => $folder_id ]);
+   return $stmt -> rowCount();
 }

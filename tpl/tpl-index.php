@@ -95,6 +95,23 @@
                 }
             });
         });
+
+        /*------------- Add Task -------------*/
+        var tskInput = $('#taskNameInput');
+        tskInput.on('keypress',function (e){
+            e.stopPropagation();
+            if (e.which == 13)
+            {
+                $.ajax({
+                    url : 'process/ajaxHandler.php',
+                    method : 'post',
+                    data : {action : "addTask" , Folder_id : <?= $_GET['folder_id'] ?> , taskName : tskInput.val()},
+                    success : function (response){
+                        location.reload();
+                    }
+                });
+            }
+        });
     });
 </script>
 </body>
