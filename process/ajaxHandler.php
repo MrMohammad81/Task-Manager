@@ -44,15 +44,23 @@ switch ($_POST['action'])
             echo "Please select folder !!";
             die();
         }
-
         if (empty($tskTitle) || strlen($tskTitle) < 3)
         {
             echo "The Task value must be greater than 3 letters !!";
             die();
         }
-
         echo addTask($tskTitle , $folder_id);
         break;
+
+        /* ---- Delete All Task ---*/
+    case 'deleteAll' :
+      if (!sizeof(getTask()))
+      {
+          echo "There is no task to delete !!";
+          die();
+      }
+      deleteAll();
+      break;
     default:
         diePage("Invalid Request");
 }

@@ -51,15 +51,18 @@
               <input type="text" id="taskNameInput" style="width: 100%;margin-left:3%;line-height: 30px;" placeholder="Enter Your Task">
           </div>
         <div class="functions">
-          <div class="button active" id="btnAddTask">Add New Task</div>
+            <a href="#">
+          <div class="button active"  id="btnAddTask">Add New Task</div>
           <div class="button">Completed</div>
-          <div class="button inverz"><i class="fa fa-trash-o"></i></div>
+          <div class="button inverz" id="btnTranc" onclick="return confirm('Are You Sure to delete all tasks!!')"><i class="fa fa-trash-o"></i></div>
+            </a>
         </div>
       </div>
       <div class="content">
         <div class="list">
           <div class="title">Today</div>
           <ul>
+              <?php if(sizeof($tasks)): ?>
               <?php foreach ($tasks as $task): ?>
             <li class="<?= $task -> is_done ? 'checked' : '' ?>"><i class="fa <?= $task -> is_done ? 'fa-check-square-o' : 'fa-square-o'; ?>"></i><span><?= $task -> Title ?></span>
               <div class="info">
@@ -68,6 +71,9 @@
               </div>
             </li>
             <?php endforeach; ?>
+              <?php else: ?>
+              <li>No Task Hear....</li>
+              <?php endif; ?>
           </ul>
         </div>
       </div>
@@ -112,7 +118,7 @@
                         {
                             location.reload();
                         }else{
-                            alert(response);
+
                         }
                     }
                 });
@@ -125,7 +131,23 @@
             $.ajax({
                 url : 'process/ajaxHandler.php',
                 method : 'post',
-                data : {action : "addTask" , Folder_id : <?= $_GET['folder_id'] ?? 0?> , taskName : tskInput.val()},
+                data : {action : "addTask" , Folder_id : <?= $_GET['folder_id='] ?? 0?> , taskName : tskInput.val()},
+                success : function (response){
+                    if (response == 1)
+                    {
+                        location.reload();
+                    }else{
+                        alert(response);
+                    }
+                }
+            });
+        });
+        var btnTran = $('#btnTranc');
+        btnTran.click(function (e){
+            $.ajax({
+                url : 'process/ajaxHandler.php',
+                method : 'post',
+                data : {action : "deleteAll"},
                 success : function (response){
                     if (response == 1)
                     {

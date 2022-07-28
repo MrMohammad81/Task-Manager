@@ -43,14 +43,14 @@ function addFolder($folder_name)
 function getTask()
 {
     global $pdo;
- /*  $folder = $_GET['folder_id'] ?? null;
+    $folder = $_GET['folder_id'] ?? null;
     $folderCondition = '';
     if (isset($folder) && is_numeric($folder))
     {
-        $folderCondition = " and folder_id=$folder";
+        $folderCondition = " and Folder_id=$folder";
     }
-    $currentUserId = getCurrentUserId();*/
-    $sql = "SELECT * FROM tasks /*WHERE User_ID = currentUserId folderCondition*/ ";
+    $currentUserId = getCurrentUserId();
+    $sql = "SELECT * FROM tasks WHERE User_ID = $currentUserId $folderCondition ";
     $stmt = $pdo -> prepare($sql);
     $stmt -> execute();
     $records = $stmt -> fetchAll(PDO::FETCH_OBJ);
@@ -75,4 +75,13 @@ function addTask($taskTitle , $folder_id)
    $stmt = $pdo -> prepare($sql);
    $stmt -> execute([':title' => $taskTitle , ':user_id' => $get_user_id , ':folder_id' => $folder_id ]);
    return $stmt -> rowCount();
+}
+
+/*-------------- delete all task ---------------*/
+function deleteAll(){
+    global $pdo;
+    $sql = "TRUNCATE tasks";
+    $stmt = $pdo -> prepare($sql);
+    $stmt -> execute();
+    return $stmt -> rowCount();
 }
