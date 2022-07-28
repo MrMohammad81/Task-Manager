@@ -17,7 +17,7 @@ switch ($_POST['action'])
     case 'addFolder':
         if (!isset($_POST['folderName']) || strlen($_POST['folderName']) < 3)
         {
-            echo "نام فولدر باید بزرگتر از 2 حرف باشد.";
+            echo "The folder name must be greater than 3 letters !!";
             die();
         }
         echo addFolder($_POST['folderName']);

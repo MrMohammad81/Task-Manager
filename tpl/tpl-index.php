@@ -35,7 +35,7 @@
             <?php foreach ($folders as $folder):?>
                 <li class="<?=isset($_GET['folder_id']) && $_GET['folder_id'] == $folder -> ID ? 'active' : '' ?>">
                     <a href="<?= site_url("?folder_id=$folder->ID") ?>"><i class="fa fa-folder"></i><?=$folder->Name?></a>
-                    <a href="?delete_folder=<?=$folder->ID?>"   onclick="return confirm('Are You Sure to delete this Item?\n<?=$folder->Name?>');"><i class="fa fa-remove" id="trash"></i></a>
+                    <a href="?delete_folder=<?=$folder->ID?>" onclick="return confirm('Are You Sure to delete this Item?\n<?=$folder->Name?>');"><i class="fa fa-remove" id="trash"></i></a>
                 </li>
             <?php endforeach; ?>
         </ul>
@@ -60,13 +60,14 @@
         <div class="list">
           <div class="title">Today</div>
           <ul>
-
-            <li class="checked"><i class="fa fa-check-square-o"></i><span>Update team page</span>
+              <?php foreach ($tasks as $task): ?>
+            <li class="<?= $task -> is_done ? 'checked' : '' ?>"><i class="fa <?= $task -> is_done ? 'fa-check-square-o' : 'fa-square-o'; ?>"></i><span><?= $task -> Title ?></span>
               <div class="info">
-                <div class="created-at"></div><span>Complete by 25/04/2014</span>
+                <div class="created-at"></div><span>Created At <?= $task -> created_at ?> </span>
+                  <a href="?delete_task=<?= $task -> ID ?>"><i class="fa fa-remove" id="trash"></i></a>
               </div>
             </li>
-
+            <?php endforeach; ?>
           </ul>
         </div>
       </div>

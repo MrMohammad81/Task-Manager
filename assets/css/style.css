@@ -312,3 +312,6 @@ a#trash{
   margin-top: 18px;
   margin-right: 5px;
 }
+.fa-check-square:before {
+  content: "\f14a";
+}
