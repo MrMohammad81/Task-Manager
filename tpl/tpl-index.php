@@ -65,7 +65,9 @@
           <ul>
               <?php if(sizeof($tasks)): ?>
               <?php foreach ($tasks as $task): ?>
-            <li class="<?= $task -> is_done ? 'checked' : '' ?>"><i class="fa <?= $task -> is_done ? 'fa-check-square-o' : 'fa-square-o'; ?>"></i><span><?= $task -> Title ?></span>
+            <li class="<?= $task -> is_done ? 'checked' : '' ?>">
+                <i data-tskId="<?= $task -> ID ?>" class="is-Done fa <?= $task -> is_done ? 'fa-check-square-o' : 'fa-square-o'; ?>"></i>
+                <span><?= $task -> Title ?></span>
               <div class="info">
                 <div class="created-at"></div><span>Created At <?= $task -> created_at ?> </span>
                   <a href="?delete_task=<?= $task -> ID ?>"><i class="fa fa-remove" id="trash"></i></a>
@@ -126,7 +128,7 @@
             }
         });
 
-        /* ---------------- task Btn ----------------*/
+        /* ---------------- Add task Btn ----------------*/
         var tskBtn = $('#btnAddTask');
         tskBtn.click(function (e){
             $.ajax({
@@ -143,6 +145,8 @@
                 }
             });
         });
+
+        /* ------------------ Truncate Btn -------------*/
         var btnTran = $('#btnTranc');
         btnTran.click(function (e){
             $.ajax({
@@ -156,6 +160,19 @@
                     }else{
                         alert(response);
                     }
+                }
+            });
+        });
+
+        /*------ Check Task Status ---------------*/
+        $('.is-Done').click(function (e){
+           var tskId = $(this).attr('data-tskId');
+            $.ajax({
+                url : 'process/ajaxHandler.php',
+                method : 'post',
+                data : {action : "doneSwitch" , taskId : tskId},
+                success : function (response){
+                    location.reload();
                 }
             });
         });

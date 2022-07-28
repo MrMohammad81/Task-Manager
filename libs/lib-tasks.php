@@ -77,11 +77,23 @@ function addTask($taskTitle , $folder_id)
    return $stmt -> rowCount();
 }
 
-/*-------------- delete all task ---------------*/
+# delete all task
 function deleteAll(){
     global $pdo;
     $sql = "TRUNCATE tasks";
     $stmt = $pdo -> prepare($sql);
     $stmt -> execute();
     return $stmt -> rowCount();
+}
+
+# check task status
+function checkTaskStatus($task_id)
+{
+    global $pdo;
+    $get_user_id = getCurrentUserId();
+    $sql = "UPDATE tasks SET is_done = 1 - is_done WHERE ID = :tsk_id AND User_ID = :user_id";
+    $stmt = $pdo -> prepare($sql);
+    $stmt -> execute([':tsk_id' => $task_id , ':user_id' => $get_user_id]);
+    return  $stmt -> rowCount();
+
 }

@@ -66,6 +66,17 @@ switch ($_POST['action'])
       }
       deleteAll();
       break;
+
+      /*------ Check Task Status --*/
+    case 'doneSwitch' :
+        $isDone = $_POST['taskId'];
+        if (!isset($isDone) || !is_numeric($isDone))
+        {
+            echo "The task id is invalid";
+            die();
+        }
+        checkTaskStatus($isDone);
+        break;
     default:
         diePage("Invalid Request");
 }
