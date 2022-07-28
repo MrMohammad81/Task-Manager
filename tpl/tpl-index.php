@@ -48,10 +48,10 @@
     <div class="view">
       <div class="viewHeader">
           <div class="title" style="width: 50%;">
-              <input type="text" id="taskNameInput" style="width: 100%;margin-left:3%;line-height: 30px;" placeholder="Add New Task">
+              <input type="text" id="taskNameInput" style="width: 100%;margin-left:3%;line-height: 30px;" placeholder="Enter Your Task">
           </div>
         <div class="functions">
-          <div class="button active">Add New Task</div>
+          <div class="button active" id="btnAddTask">Add New Task</div>
           <div class="button">Completed</div>
           <div class="button inverz"><i class="fa fa-trash-o"></i></div>
         </div>
@@ -118,6 +118,25 @@
                 });
             }
         });
+
+        /* ---------------- task Btn ----------------*/
+        var tskBtn = $('#btnAddTask');
+        tskBtn.click(function (e){
+            $.ajax({
+                url : 'process/ajaxHandler.php',
+                method : 'post',
+                data : {action : "addTask" , Folder_id : <?= $_GET['folder_id'] ?? 0?> , taskName : tskInput.val()},
+                success : function (response){
+                    if (response == 1)
+                    {
+                        location.reload();
+                    }else{
+                        alert(response);
+                    }
+                }
+            });
+        });
+        tskInput.focus();
     });
 </script>
 </body>

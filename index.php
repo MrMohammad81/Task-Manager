@@ -13,6 +13,7 @@ if (isset($_GET['delete_task']) && is_numeric($_GET['delete_task']))
 {
     $deletedTask = deleteTask($_GET['delete_task']);
 }
+
 # show folders
 $folders = getFolders();
 
