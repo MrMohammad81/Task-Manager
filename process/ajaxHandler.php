@@ -27,9 +27,14 @@ switch ($_POST['action'])
     case "addTask" :
         $taskTitle = $_POST['taskName'];
         $folderId = $_POST['Folder_id'];
-        if (!isset($folderId) || empty($folderId) > 3)
+        if (!isset($folderId) || ($folderId) == 0)
         {
             echo "Please Select a Folder!! !!";
+            die();
+        }
+        if (!isset($taskTitle) || strlen($taskTitle) < 3)
+        {
+            echo "The Task value must be greater than 3 letters !!";
             die();
         }
         echo addTask($taskTitle , $folderId);
@@ -39,17 +44,17 @@ switch ($_POST['action'])
     case 'add_Task_btn' :
         $tskTitle = $_POST['taskName'];
         $folder_id = $_POST['Folder_id'];
-       if (!isset($folder_id))
+       if (!isset($folder_id) || empty($folder_id))
         {
             echo "Please select folder !!";
             die();
         }
-        if (empty($tskTitle) || strlen($tskTitle) < 3)
+        if (strlen($tskTitle) < 3)
         {
             echo "The Task value must be greater than 3 letters !!";
             die();
         }
-        echo addTask($tskTitle , $folder_id);
+        echo addTask($tskTitle, $folder_id );
         break;
 
         /* ---- Delete All Task ---*/
