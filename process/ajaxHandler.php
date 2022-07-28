@@ -39,14 +39,15 @@ switch ($_POST['action'])
     case 'addTask' :
         $tskTitle = $_POST['taskName'];
         $folder_id = $_POST['Folder_id'];
-        if (empty($tskTitle) || strlen($tskTitle) < 3)
-        {
-            echo "The Task name must be greater than 3 letters !!";
-            die();
-        }
-        if (!isset($folder_id) && !is_numeric($folder_id))
+        if (!isset($folder_id) || empty($folder_id))
         {
             echo "Please select folder !!";
+            die();
+        }
+
+        if (empty($tskTitle) || strlen($tskTitle) < 3)
+        {
+            echo "The Task value must be greater than 3 letters !!";
             die();
         }
 

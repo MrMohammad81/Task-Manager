@@ -77,6 +77,7 @@
 <!-- partial -->
 <script>
     $(document).ready(function (){
+        /* ------------------- Add Folder ----------------*/
         var inputFolder = $('#addNewFolder');
         var btnAddFolder = $('#addFolderBtn');
         btnAddFolder.click(function (e)
@@ -105,9 +106,14 @@
                 $.ajax({
                     url : 'process/ajaxHandler.php',
                     method : 'post',
-                    data : {action : "addTask" , Folder_id : <?= $_GET['folder_id'] ?> , taskName : tskInput.val()},
+                    data : {action : "addTask" , Folder_id : <?= $_GET['folder_id'] ?? 0?> , taskName : tskInput.val()},
                     success : function (response){
-                        location.reload();
+                        if (response == 1)
+                        {
+                            location.reload();
+                        }else{
+                            alert(response);
+                        }
                     }
                 });
             }
