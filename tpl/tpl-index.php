@@ -116,9 +116,9 @@
                     success : function (response){
                         if (response == 1)
                         {
-                            location.reload();
+                            alert(response)
                         }else{
-
+                          alert(response)
                         }
                     }
                 });
@@ -131,7 +131,7 @@
             $.ajax({
                 url : 'process/ajaxHandler.php',
                 method : 'post',
-                data : {action : "addTask" , Folder_id : <?= $_GET['folder_id='] ?? 0?> , taskName : tskInput.val()},
+                data : {action : "add_Task_btn" , Folder_id : <?= $_GET['folder_id='] ?? 0?> , taskName : tskInput.val()},
                 success : function (response){
                     if (response == 1)
                     {

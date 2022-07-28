@@ -24,9 +24,9 @@ switch ($_POST['action'])
         break;
 
         /*--- Add Task ----*/
-    case "addTasks" :
-        $taskTitle = $_POST['taskTitle'];
-        $folderId = $_POST['folderId'];
+    case "addTask" :
+        $taskTitle = $_POST['taskName'];
+        $folderId = $_POST['Folder_id'];
         if (!isset($folderId) || empty($folderId) > 3)
         {
             echo "Please Select a Folder!! !!";
@@ -35,11 +35,11 @@ switch ($_POST['action'])
         echo addTask($taskTitle , $folderId);
         break;
 
-        /*-- Delete Task --*/
-    case 'addTask' :
+        /*-- Add Task btn --*/
+    case 'add_Task_btn' :
         $tskTitle = $_POST['taskName'];
         $folder_id = $_POST['Folder_id'];
-        if (!isset($folder_id) || empty($folder_id))
+       if (!isset($folder_id))
         {
             echo "Please select folder !!";
             die();
