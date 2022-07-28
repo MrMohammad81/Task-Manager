@@ -10,7 +10,7 @@
   <!----------------------------------------------------   src file --------------------------------------->
 
  <script  src="<?= asset('src/script.js') ?>"></script>
-
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
 </head>
 <body>
 <!-- partial:index.partial.html -->
@@ -28,10 +28,15 @@
       </div>
       <div class="menu">
         <div class="title">FOLDERS</div>
-        <ul>
-          <li class="active"> <i class="fa fa-folder"></i>ALL</li>
+          <ul class="folder-list">
+             <li class="<?= isset($_GET['folder_id']) ? '' : 'active' ?>">
+              <a href="<?= site_url() ?>"> <i class="fa fa-folder"></i>ALL</a>
+             </li>
             <?php foreach ($folders as $folder):?>
-          <li> <i class="fa fa-folder"></i><?= $folder->Name?></li>
+                <li class="<?=isset($_GET['folder_id']) && $_GET['folder_id'] == $folder -> ID ? 'active' : '' ?>">
+                    <a href="<?= site_url("?folder_id=$folder->ID") ?>"><i class="fa fa-folder"></i><?=$folder->Name?></a>
+                    <a href="?delete_folder=<?=$folder->ID?>"   onclick="return confirm('Are You Sure to delete this Item?\n<?=$folder->Name?>');"><i class="fa fa-remove" id="trash"></i></a>
+                </li>
             <?php endforeach; ?>
         </ul>
       </div>
@@ -69,6 +74,27 @@
   </div>
 </div>
 <!-- partial -->
-
+<script>
+    $(document).ready(function (){
+        var inputFolder = $('#addNewFolder');
+        var btnAddFolder = $('#addFolderBtn');
+        btnAddFolder.click(function (e)
+        {
+            $.ajax({
+                url : 'process/ajaxHandler.php',
+                method : 'post',
+                data : {action : "addFolder" , folderName : inputFolder.val()},
+                success : function (response){
+                    if(response == '1'){
+                        $('<li> <a href="#"><i class="fa fa-folder"></i>'+inputFolder.val()+'</a></li>').appendTo('ul.folder-list');
+                        location.reload();
+                    }else{
+                        alert(response);
+                    }
+                }
+            });
+        });
+    });
+</script>
 </body>
 </html>
