@@ -13,7 +13,11 @@ body {
   font-size: 14px;
   font-smoothing: antialiased;
 }
-
+.success {
+  background: #def9df !important;
+  border: 1px solid #a4cca6 !important;
+  color: #205217 !important;
+}
 .page {
   position: absolute;
   width: 80%;

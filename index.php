@@ -2,6 +2,11 @@
 
 include "Boostrap/init.php";
 
+if (!isLogedIn())
+{
+    header("Location:".site_url('auth.php'));
+}
+
 # delete folder
 if (isset($_GET['delete_folder']) && is_numeric($_GET['delete_folder']))
 {
@@ -19,7 +24,6 @@ $folders = getFolders();
 
 #show tasks
 $tasks = getTask();
-
 
 
 include "tpl/tpl-index.php";

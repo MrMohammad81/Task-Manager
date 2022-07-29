@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 include "constant.php";
 include BASE_PATH."Boostrap/config.php";
 include BASE_PATH."vendor/autoload.php";

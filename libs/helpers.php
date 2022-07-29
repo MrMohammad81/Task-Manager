@@ -21,6 +21,10 @@ function diePage($msg)
     die();
 }
 
+function Messeg($msg , $cssClass = 'info')
+{
+    echo "<div class='$cssClass' style='margin: 10px auto; background-color: lavender;text-align: center ; width: 40% ; padding: 20px; border-radius: 5px; border: 1px solid; font-family: sans-serif'>$msg</div>";
+}
 # is ajax request
 function isAjaxRequest()
 {

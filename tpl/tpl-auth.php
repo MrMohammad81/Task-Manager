@@ -1,81 +1,56 @@
+
 <!DOCTYPE html>
 <html lang="en" >
 <head>
-  <meta charset="UTF-8">
-  <title>Login/Register></title>
-
-    <link rel="stylesheet" href="<?= asset('css/style.css') ?>">
-
-  <!----------------------------------------------------   src file --------------------------------------->
-
- <script  src="<?= asset('src/script.js') ?>"></script>
+    <meta charset="UTF-8">
+    <title>login-signup</title>
+    <link rel="stylesheet" href="<?= asset('css/auth.css') ?>">
 
 </head>
 <body>
 <!-- partial:index.partial.html -->
-<div class="page">
-  <div class="pageHeader">
-    <div class="title">Dashboard</div>
-    <div class="userPanel"><i class="fa fa-chevron-down"></i><span class="username">John Doe </span><img src="<?= asset('img/Screenshot_20210927-003328_PicsArt.jpg') ?>" width="40" height="40" alt=""/ ></div>
-  </div>
-  <div class="main">
-    <div class="nav">
-      <div class="searchbox">
-        <div><i class="fa fa-search"></i>
-          <input type="search" placeholder="Search"/>
+<div id="background">
+    <div id="panel-box">
+        <div class="panel">
+            <div class="auth-form on" id="login">
+                <div id="form-title">Log In</div>
+                <form action="<?=site_url('auth.php?action=login')?>" method="POST">
+                    <input name="email" type="text" required="required" placeholder="Email"/>
+                    <input name="password" type="password" required="required" placeholder="Password"/>
+                    <button type="Submit">Log In</button>
+                </form>
+            </div>
+            <div class="auth-form" id="signup" >
+                <div id="form-title">Register</div>
+                <form action="<?=site_url('auth.php?action=register')?>" method="POST">
+                    <input name="fullname" type="text" required="required" placeholder="FullName"/>
+                    <input name="email" type="text" required="required" placeholder="Email"/>
+                    <input name="password" type="password" required="required" placeholder="Password"/>
+                    <button type="Submit">Sign Up</button>
+                </form>
+            </div>
         </div>
-      </div>
-      <div class="menu">
-        <div class="title">Navigation</div>
-        <ul>
-          <li> <i class="fa fa-home"></i>Home</li>
-          <li><i class="fa fa-signal"></i>Activity</li>
-          <li class="active"> <i class="fa fa-tasks"></i>Manage Tasks</li>
-          <li> <i class="fa fa-envelope"></i>Messages</li>
-        </ul>
-      </div>
+        <div class="panel">
+            <div id="switch">Sign Up</div>
+            <div id="image-overlay"></div>
+            <div id="image-side"></div>
+        </div>
     </div>
-    <div class="view">
-      <div class="viewHeader">
-        <div class="title">Manage Tasks</div>
-        <div class="functions">
-          <div class="button active">Add New Task</div>
-          <div class="button">Completed</div>
-          <div class="button inverz"><i class="fa fa-trash-o"></i></div>
-        </div>
-      </div>
-      <div class="content">
-        <div class="list">
-          <div class="title">Today</div>
-          <ul>
-            <li class="checked"><i class="fa fa-check-square-o"></i><span>Update team page</span>
-              <div class="info">
-                <div class="button green">In progress</div><span>Complete by 25/04/2014</span>
-              </div>
-            </li>
-            <li><i class="fa fa-square-o"></i><span>Design a new logo</span>
-              <div class="info">
-                <div class="button">Pending</div><span>Complete by 10/04/2014</span>
-              </div>
-            </li>
-            <li><i class="fa fa-square-o"></i><span>Find a front end developer</span>
-              <div class="info"></div>
-            </li>
-          </ul>
-        </div>
-        <div class="list">
-          <div class="title">Tomorrow</div>
-          <ul>
-            <li><i class="fa fa-square-o"></i><span>Find front end developer</span>
-              <div class="info"></div>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </div>
 </div>
 <!-- partial -->
+<script src='https://code.jquery.com/jquery-3.3.1.min.js'></script>
 
+<script>
+    $('#switch').click(function(){
+        $(this).text(function(i, text){
+            return text === "Sign Up" ? "Log In" : "Sign Up";
+        });
+        $('#login').toggleClass("on");
+        $('#signup').toggleClass("on");
+        $(this).toggleClass("two");
+        $('#background').toggleClass("two");
+        $('#image-overlay').toggleClass("two");
+    })
+</script>
 </body>
 </html>
