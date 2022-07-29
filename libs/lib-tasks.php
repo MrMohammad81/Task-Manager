@@ -21,7 +21,7 @@ function getFolders()
 function deleteFolder($folder_id): int
 {
     global $pdo;
-    $sql = "DELETE FROM  folders WHERE ID = $folder_id";
+    $sql = "DELETE folders,tasks FROM folders JOIN tasks ON tasks.folder_ID = folders.ID WHERE folders.ID = $folder_id";
     $stmt = $pdo -> prepare($sql);
     $stmt -> execute();
     return $stmt -> rowCount();

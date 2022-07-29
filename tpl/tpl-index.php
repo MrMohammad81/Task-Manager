@@ -30,7 +30,7 @@
         <div class="title">FOLDERS</div>
           <ul class="folder-list">
              <li class="<?= isset($_GET['folder_id']) ? '' : 'active' ?>">
-              <a href="<?= site_url() ?>"> <i class="fa fa-folder"></i>ALL</a>
+              <a href="<?= site_url() ?>"> <i class="fa fa-folder" id="folder-color"></i>ALL</a>
              </li>
             <?php foreach ($folders as $folder):?>
                 <li class="<?=isset($_GET['folder_id']) && $_GET['folder_id'] == $folder -> ID ? 'active' : '' ?>">
@@ -147,7 +147,7 @@
         });
 
         /* ------------------ Truncate Btn -------------*/
-        var btnTran = $('#btnTranc');
+        var btnTran = $('div#btnTranc');
         btnTran.click(function (e){
             $.ajax({
                 url : 'process/ajaxHandler.php',

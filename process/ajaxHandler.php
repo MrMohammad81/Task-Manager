@@ -7,13 +7,14 @@ if (!isAjaxRequest())
     diePage("Invalid Request");
 }
 
-# check ajax action add Folder
+# check ajax action
 if (!isset($_POST['action']) || empty($_POST['action']))
 {
     diePage("Invalid Action!");
 }
 switch ($_POST['action'])
 {
+    /*------ Add Folder -----*/
     case 'addFolder':
         if (!isset($_POST['folderName']) || strlen($_POST['folderName']) < 3)
         {
