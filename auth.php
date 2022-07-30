@@ -14,7 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
         {
             Messeg("Error : an error in registration!!");
         }else{
-            Messeg("register is successfully !! Welcome . <br><a href='$home_page'>Back to HomePage...</a>");
+            redirect(site_url('index.php'));
         }
     }
     if ($action == 'login')
@@ -24,7 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
         {
             Messeg("Username or Password Invalid");
         }else{
-            Messeg("You are now Logged In.<br><a href='{$home_page}'>Manage Your Tasks</a>",'success');
+            redirect(site_url('index.php'));
         }
     }
 }

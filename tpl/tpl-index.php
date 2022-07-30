@@ -17,7 +17,12 @@
 <div class="page">
   <div class="pageHeader">
     <div class="title">Dashboard</div>
-    <div class="userPanel"><i class="fa fa-chevron-down"></i><span class="username">John Doe </span><img src="<?= asset('img/Screenshot_20210927-003328_PicsArt.jpg') ?>" width="40" height="40" alt=""/ ></div>
+    <div class="userPanel">
+        <a href="<?= site_url('?logout=1') ?>">
+            <i class="fa fa-sign-out"></i>
+        </a>
+        <span class="username"><?= getLoggedInUser() -> Name ?? 'Unknown' ?></span>
+        <img src="<?= $user -> img ?>" width="40" height="40" alt=""/ ></div>
   </div>
   <div class="main">
     <div class="nav">

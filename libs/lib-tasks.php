@@ -1,16 +1,12 @@
 <?php defined('BASE_PATH')  or die("Permision Denied");
 
-# get User Id
-function getCurrentUserId()
-{
-    return 1;
-}
 /*---------------------------------- Folders Function -----------------------------*/
 # get folder as database
 function getFolders()
 {
     global $pdo;
-    $sql = "SELECT * FROM folders";
+    $current_user_id = getCurrentUserId();
+    $sql = "SELECT * FROM folders  where user_id = $current_user_id";
     $stmt = $pdo -> prepare($sql);
     $stmt -> execute();
     $records = $stmt -> fetchAll(PDO::FETCH_OBJ);

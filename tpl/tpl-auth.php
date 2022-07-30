@@ -22,7 +22,7 @@
             </div>
             <div class="auth-form" id="signup" >
                 <div id="form-title">Register</div>
-                <form action="<?=site_url('auth.php?action=register')?>" method="POST">
+                <form action="<?=site_url('auth.php?action=register')?>" method="POST" >
                     <input name="fullname" type="text" required="required" placeholder="FullName"/>
                     <input name="email" type="text" required="required" placeholder="Email"/>
                     <input name="password" type="password" required="required" placeholder="Password"/>
