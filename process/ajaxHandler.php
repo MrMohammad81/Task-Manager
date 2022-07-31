@@ -58,16 +58,6 @@ switch ($_POST['action'])
         echo addTask($tskTitle, $folder_id );
         break;
 
-        /* ---- Delete All Task ---*/
-    case 'deleteAll' :
-      if (!sizeof(getTask()))
-      {
-          echo "There is no task to delete !!";
-          die();
-      }
-      deleteAll();
-      break;
-
       /*------ Check Task Status --*/
     case 'doneSwitch' :
         $isDone = $_POST['taskId'];

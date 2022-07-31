@@ -17,10 +17,17 @@ function getFolders()
 function deleteFolder($folder_id): int
 {
     global $pdo;
-    $sql = "DELETE folders,tasks FROM folders JOIN tasks ON folders.ID = tasks.Folder_ID WHERE folders.ID = $folder_id";
-    $stmt = $pdo -> prepare($sql);
-    $stmt -> execute();
-    return $stmt -> rowCount();
+    $sql = "DELETE folders , tasks FROM folders JOIN tasks ON folders.ID = tasks.Folder_ID WHERE folders.ID = $folder_id";
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute();
+    if ($stmt -> rowCount() > 0)
+    {
+        return $stmt->rowCount();
+    }
+    $sql_1 = "DELETE FROM folders Where ID = $folder_id";
+    $stmt_1 = $pdo->prepare($sql_1);
+    $stmt_1->execute();
+    return $stmt_1->rowCount();
 }
 
 # Add Folder

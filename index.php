@@ -7,6 +7,7 @@ if (isset($_GET['logout']))
 {
     loggedOut();
 }
+
 if (!isLogedIn())
 {
     redirect(site_url('auth.php'));

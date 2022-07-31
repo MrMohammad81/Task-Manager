@@ -59,9 +59,6 @@
             <a href="#">
           <div class="button active"  id="btnAddTask">Add New Task</div>
             </a>
-            <a>
-          <div class="button inverz" id="btnTranc" onclick="return confirm('Are You Sure to delete all tasks!!')"><i class="fa fa-trash-o"></i></div>
-            </a>
         </div>
       </div>
       <div class="content">
@@ -140,24 +137,6 @@
                 url : 'process/ajaxHandler.php',
                 method : 'post',
                 data : {action : "add_Task_btn" , Folder_id : <?= $_GET['folder_id'] ?? 0 ?> , taskName : tskInput.val()},
-                success : function (response){
-                    if (response == 1)
-                    {
-                        location.reload();
-                    }else{
-                        alert(response);
-                    }
-                }
-            });
-        });
-
-        /* ------------------ Truncate Btn -------------*/
-        var btnTran = $('div#btnTranc');
-        btnTran.click(function (e){
-            $.ajax({
-                url : 'process/ajaxHandler.php',
-                method : 'post',
-                data : {action : "deleteAll"},
                 success : function (response){
                     if (response == 1)
                     {
